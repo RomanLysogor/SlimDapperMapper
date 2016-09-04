@@ -28,10 +28,10 @@ namespace SlimDapperMapper
 
             foreach (var row in queryRows)
             {
-                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultType, resultFields, row, lookupIndetifier);
-                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstType, firstFields, row, lookupIndetifier);
-                var secondInstance = HelperFunctions.CreateInstanceAndMatchFields<TSecond>(secondType, secondFields, row, lookupIndetifier);
-                var thirdInstance = HelperFunctions.CreateInstanceAndMatchFields<TThird>(thirdType, thirdFields, row, lookupIndetifier);
+                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultFields, row, lookupIndetifier);
+                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstFields, row, lookupIndetifier);
+                var secondInstance = HelperFunctions.CreateInstanceAndMatchFields<TSecond>(secondFields, row, lookupIndetifier);
+                var thirdInstance = HelperFunctions.CreateInstanceAndMatchFields<TThird>(thirdFields, row, lookupIndetifier);
 
                 lookupResolver(resultInstance, firstInstance, secondInstance, thirdInstance, mappedResults);
             }
@@ -59,9 +59,9 @@ namespace SlimDapperMapper
 
             foreach (var row in queryRows)
             {
-                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultType, resultFields, row, lookupIndetifier);
-                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstType, firstFields, row, lookupIndetifier);
-                var secondInstance = HelperFunctions.CreateInstanceAndMatchFields<TSecond>(secondType, secondFields, row, lookupIndetifier);
+                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultFields, row, lookupIndetifier);
+                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstFields, row, lookupIndetifier);
+                var secondInstance = HelperFunctions.CreateInstanceAndMatchFields<TSecond>(secondFields, row, lookupIndetifier);
 
                 lookupResolver(resultInstance, firstInstance, secondInstance, mappedResults);
             }
@@ -88,8 +88,8 @@ namespace SlimDapperMapper
 
             foreach (var row in queryRows)
             {
-                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstType, firstFields, row, lookupIndetifier);
-                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultType, resultFields, row, lookupIndetifier);
+                var firstInstance = HelperFunctions.CreateInstanceAndMatchFields<TFirst>(firstFields, row, lookupIndetifier);
+                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultFields, row, lookupIndetifier);
 
                 lookupResolver(resultInstance, firstInstance, mappedResults);
             }
@@ -113,7 +113,7 @@ namespace SlimDapperMapper
 
             foreach (var row in queryRows)
             {
-                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultType, resultFields, row, lookupIndetifier);
+                var resultInstance = HelperFunctions.CreateInstanceAndMatchFields<TResult>(resultFields, row, lookupIndetifier);
 
                 lookupResolver(resultInstance, mappedResults);
             }

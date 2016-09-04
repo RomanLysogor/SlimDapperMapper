@@ -22,15 +22,18 @@ namespace SlimDapperMapper
             fieldInfo.SetValue(targetObject, fieldValue);
         }
 
-        public static TResult CreateInstanceAndMatchFields<TResult>(Type type, FieldInfo[] fields, IDictionary<string, object> row, Configuration.LookupFieldIdentification lookupIdentifier)
+        public static TResult CreateInstanceAndMatchFields<TResult>(FieldInfo[] fields, IDictionary<string, object> row, Configuration.LookupFieldIdentification lookupIdentifier)
         {
-            var instance = CreateInstance<TResult>(type);
+            Type type = typeof(TResult);
+
             var identificationField = lookupIdentifier(type);
 
             if (row[identificationField] == null)
             {
                 return default(TResult);
             }
+
+            var instance = (TResult)Activator.CreateInstance(type);
 
             foreach (var field in fields)
             {
@@ -62,11 +65,6 @@ namespace SlimDapperMapper
             }
 
             return converted;
-        }
-
-        private static T CreateInstance<T>(Type type)
-        {
-            return (T)Activator.CreateInstance(type);
         }
     }
 }
