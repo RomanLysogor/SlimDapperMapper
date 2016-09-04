@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace DatabaseMapper
+namespace SlimDapperMapper
 {
     internal static class HelperFunctions
     {
@@ -26,7 +26,6 @@ namespace DatabaseMapper
         {
             var instance = CreateInstance<TResult>(type);
             var identificationField = lookupIdentifier(type);
-            var identificationFieldType = fields.First(f => f.Name.Equals(identificationField)).FieldType;
 
             if (row[identificationField] == null)
             {

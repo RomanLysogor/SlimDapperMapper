@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DatabaseMapper
+namespace SlimDapperMapper
 {
     public static class AutoMapper
     {

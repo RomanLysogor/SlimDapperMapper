@@ -1,7 +1,5 @@
 ﻿using Xunit;
 using System;
-using System.Threading.Tasks;
-using System.Dynamic;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,7 +42,7 @@ namespace SlimDapperMapper.Tests
         public void SimpleleObject_OneEntity_Test()
         {
             // Arrange
-            DatabaseMapper.Configuration.RegisterLookupConvention<SingleCustomer>(t => "CustomerId");
+            SlimDapperMapper.Configuration.RegisterLookupConvention<SingleCustomer>(t => "CustomerId");
             var customerFromDb = new List<IDictionary<string, object>>()
             {
                 new Dictionary<string, object>()
@@ -57,7 +55,7 @@ namespace SlimDapperMapper.Tests
             };
 
             // Act
-            var customers = DatabaseMapper.AutoMapper.Map<SingleCustomer>(customerFromDb, (c, dict) =>
+            var customers = SlimDapperMapper.AutoMapper.Map<SingleCustomer>(customerFromDb, (c, dict) =>
              {
                  if (c != null)
                  {
@@ -80,7 +78,7 @@ namespace SlimDapperMapper.Tests
         public void SimpleleObject_TwoEntities_Test()
         {
             // Arrange
-            DatabaseMapper.Configuration.RegisterLookupConvention<SingleCustomer>(t => "CustomerId");
+            SlimDapperMapper.Configuration.RegisterLookupConvention<SingleCustomer>(t => "CustomerId");
             var customersFromDb = new List<IDictionary<string, object>>()
             {
                 new Dictionary<string, object>()
@@ -100,7 +98,7 @@ namespace SlimDapperMapper.Tests
             };
 
             // Act
-            var customers = DatabaseMapper.AutoMapper.Map<SingleCustomer>(customersFromDb, (c, dict) =>
+            var customers = SlimDapperMapper.AutoMapper.Map<SingleCustomer>(customersFromDb, (c, dict) =>
             {
                 if (c != null)
                 {
@@ -128,7 +126,7 @@ namespace SlimDapperMapper.Tests
         public void NestedObject_OneEntity_Test()
         {
             // Arrange
-            DatabaseMapper.Configuration.RegisterLookupConvention<Customer>(t => t.Name + "Id");
+            SlimDapperMapper.Configuration.RegisterLookupConvention<Customer>(t => t.Name + "Id");
             var fullCustomerDataFromDb = new List<IDictionary<string, object>>()
             {
                 new Dictionary<string, object>()
@@ -178,7 +176,7 @@ namespace SlimDapperMapper.Tests
             };
 
             // Act
-            var customers = DatabaseMapper.AutoMapper.Map<Customer, Order, Product>(fullCustomerDataFromDb, CustomerParser);
+            var customers = SlimDapperMapper.AutoMapper.Map<Customer, Order, Product>(fullCustomerDataFromDb, CustomerParser);
 
             // Assert
             Assert.Equal(customers.Count, 1);
@@ -213,7 +211,7 @@ namespace SlimDapperMapper.Tests
         public void NestedObject_TwoEntities_Test()
         {
             // Arrange
-            DatabaseMapper.Configuration.RegisterLookupConvention<Customer>(t => t.Name + "Id");
+            SlimDapperMapper.Configuration.RegisterLookupConvention<Customer>(t => t.Name + "Id");
             var fullCustomerDataFromDb = new List<IDictionary<string, object>>()
             {
                 new Dictionary<string, object>()
@@ -261,7 +259,7 @@ namespace SlimDapperMapper.Tests
             };
 
             // Act
-            var customers = DatabaseMapper.AutoMapper.Map<Customer, Order, Product>(fullCustomerDataFromDb, CustomerParser);
+            var customers = SlimDapperMapper.AutoMapper.Map<Customer, Order, Product>(fullCustomerDataFromDb, CustomerParser);
 
             // Assert
             Assert.Equal(customers.Count, 2);
